@@ -1,19 +1,38 @@
 @use '../../../styles/variables' as *;
 
 .backdrop {
-	position: fixed; inset: 0; background: rgba(0,0,0,.5);
-	display: grid; place-items: center; z-index: 1000;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .5);
+  display: grid;
+  place-items: center;
+  z-index: 1000;
 }
-.dialog {
-	background: var(--color-surface);
-	color: var(--color-text);
-	border: 1px solid var(--color-border);
-	border-radius: var(--radius-lg);
-	box-shadow: var(--shadow-md);
-	width: min(92vw, 600px);
-	max-height: 85vh; overflow: auto;
-}
-.header { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-bottom: 1px solid var(--color-border); }
-.title { margin: 0; font-size: var(--text-xl); }
-.body { padding: 16px; }
 
+.dialog {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  width: min(92vw, 600px);
+  max-height: 85vh;
+  overflow: auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--text-xl);
+}
+
+.body {
+  padding: 16px;
+}

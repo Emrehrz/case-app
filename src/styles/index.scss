@@ -1,8 +1,16 @@
 @forward './variables';
 @use './global';
 
-:root { color-scheme: light dark; }
+:root {
+  color-scheme: light dark;
+}
 
-.section { padding-block: var(--space-10); }
-@media (min-width: 641px) { .section { padding-block: var(--space-12); } }
+.section {
+  padding-block: var(--space-10);
+}
 
+@media (min-width: 641px) {
+  .section {
+    padding-block: var(--space-12);
+  }
+}
