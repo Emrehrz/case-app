@@ -1,0 +1,65 @@
+// Theme scales and CSS variables
+:root {
+	/* Colors - Light */
+	--color-bg: #ffffff;
+	--color-surface: #f7f7f8;
+	--color-surface-2: #efeff0;
+	--color-surface-3: #e7e7e9;
+	--color-surface-4: #dfdfe2;
+	--color-text: #1f2937;
+	--color-muted: #6b7280;
+	--color-border: #e5e7eb;
+	--color-primary: #2563eb; /* indigo-600 */
+	--color-primary-600: #1d4ed8;
+	--color-primary-700: #1e40af;
+	--color-on-primary: #ffffff;
+	--color-danger: #e11d48;
+
+	/* Radius & Shadows */
+	--radius-sm: 6px;
+	--radius-md: 10px;
+	--radius-lg: 16px;
+	--shadow-sm: 0 1px 2px rgba(0,0,0,.06);
+	--shadow-md: 0 6px 20px rgba(0,0,0,.08);
+
+	/* Typography */
+	--font-sans: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
+	--text-xs: 12px;
+	--text-sm: 14px;
+	--text-md: 16px;
+	--text-lg: 18px;
+	--text-xl: 22px;
+	--text-2xl: 28px;
+
+	/* Spacing */
+	--space-1: 4px;
+	--space-2: 8px;
+	--space-3: 12px;
+	--space-4: 16px;
+	--space-5: 20px;
+	--space-6: 24px;
+	--space-8: 32px;
+	--space-10: 40px;
+	--space-12: 48px;
+
+	/* Breakpoints */
+	--bp-sm: 640px;
+	--bp-md: 1024px;
+}
+
+html[data-theme='dark'] {
+	--color-bg: #0b0b0d;
+	--color-surface: #131316;
+	--color-surface-2: #1b1b20;
+	--color-surface-3: #23232a;
+	--color-surface-4: #2b2b34;
+	--color-text: #e5e7eb;
+	--color-muted: #9ca3af;
+	--color-border: #27272a;
+	--color-primary: #60a5fa; /* light blue */
+	--color-primary-600: #3b82f6;
+	--color-primary-700: #2563eb;
+	--color-on-primary: #0b0b0d;
+	--color-danger: #fb7185;
+}
+

@@ -1,0 +1,47 @@
+@use '../../../styles/variables' as *;
+
+.button {
+  --btn-bg: var(--color-primary);
+  --btn-fg: var(--color-on-primary);
+  --btn-border: transparent;
+  --btn-bg-hover: var(--color-primary-600);
+  --btn-bg-active: var(--color-primary-700);
+  --radius: var(--radius-md);
+  --pad-y: 0.6rem;
+  --pad-x: 1rem;
+  --gap: 0.5rem;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap);
+  border-radius: var(--radius);
+  border: 1px solid var(--btn-border);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  padding: var(--pad-y) var(--pad-x);
+  font: inherit;
+  cursor: pointer;
+  transition: background-color .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+
+.button:focus-visible { outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 35%, transparent); }
+.button:hover { background: var(--btn-bg-hover); }
+.button:active { background: var(--btn-bg-active); }
+
+.full { width: 100%; }
+
+.sm { --pad-y: 0.4rem; --pad-x: 0.75rem; font-size: 0.9rem; }
+.md { --pad-y: 0.6rem; --pad-x: 1rem; font-size: 1rem; }
+.lg { --pad-y: 0.8rem; --pad-x: 1.25rem; font-size: 1.05rem; }
+
+.primary { --btn-bg: var(--color-primary); --btn-fg: var(--color-on-primary); --btn-border: transparent; --btn-bg-hover: var(--color-primary-600); --btn-bg-active: var(--color-primary-700); }
+.secondary { --btn-bg: var(--color-surface-2); --btn-fg: var(--color-text); --btn-border: var(--color-border); --btn-bg-hover: var(--color-surface-3); --btn-bg-active: var(--color-surface-4); }
+.ghost { --btn-bg: transparent; --btn-fg: var(--color-primary); --btn-border: transparent; --btn-bg-hover: color-mix(in srgb, var(--color-primary) 8%, transparent); --btn-bg-active: color-mix(in srgb, var(--color-primary) 16%, transparent); }
+.danger { --btn-bg: var(--color-danger); --btn-fg: white; --btn-bg-hover: #d14545; --btn-bg-active: #bb3a3a; }
+
+.loading { cursor: progress; }
+.spinner { inline-size: 1em; block-size: 1em; border-radius: 50%; border: 2px solid color-mix(in srgb, var(--btn-fg) 25%, transparent); border-top-color: var(--btn-fg); animation: spin 1s linear infinite; }
+.label { display: inline-flex; align-items: center; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
