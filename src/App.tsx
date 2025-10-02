@@ -3,7 +3,8 @@ import Card from './components/ui/Card/Card'
 import Accordion from './components/ui/Accordion/Accordion'
 import Input from './components/ui/Input/Input'
 import useTheme from './hooks/useTheme'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import ComponentsPage from './pages/ComponentsPage'
 
 function App() {
   const { theme, toggle } = useTheme()
@@ -12,6 +13,13 @@ function App() {
   const [message, setMessage] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [errors, setErrors] = useState<{ email?: string; name?: string; message?: string }>({})
+  const [route, setRoute] = useState<string>(() => location.hash || '#/')
+
+  useEffect(() => {
+    const onHashChange = () => setRoute(location.hash || '#/')
+    window.addEventListener('hashchange', onHashChange)
+    return () => window.removeEventListener('hashchange', onHashChange)
+  }, [])
 
   function validate() {
     const errs: typeof errors = {}
@@ -30,15 +38,22 @@ function App() {
     setTimeout(() => setSubmitted(false), 1800)
   }
 
+  if (route === '#/components') {
+    return <ComponentsPage />
+  }
+
   return (
     <div>
       {/* Header */}
       <header className="container" style={{ paddingBlock: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <a href="#hero" style={{ fontWeight: 700 }}>CaseApp</a>
         <nav aria-label="Primary">
-          <Button variant="ghost" onClick={toggle} aria-pressed={theme === 'dark'}>
-            {theme === 'dark' ? 'Light' : 'Dark'} Mode
-          </Button>
+          <span style={{ display: 'inline-flex', gap: 8 }}>
+            <a href="#/components" style={{ padding: '8px 10px' }}>Components</a>
+            <Button variant="ghost" onClick={toggle} aria-pressed={theme === 'dark'}>
+              {theme === 'dark' ? 'Light' : 'Dark'} Mode
+            </Button>
+          </span>
         </nav>
       </header>
 
