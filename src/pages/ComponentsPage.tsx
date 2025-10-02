@@ -12,7 +12,7 @@ export default function ComponentsPage() {
     <div className="container" style={{ display: 'grid', gap: 24, paddingBlock: 24 }}>
       <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <h1 style={{ margin: 0 }}>Component Library</h1>
-        <a href="/">← Landing</a>
+        <a href="#/">← Landing</a>
       </header>
 
       <section>
