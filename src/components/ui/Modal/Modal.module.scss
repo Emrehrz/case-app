@@ -1,19 +1,77 @@
 @use '../../../styles/variables' as *;
 
 .backdrop {
-	position: fixed; inset: 0; background: rgba(0,0,0,.5);
-	display: grid; place-items: center; z-index: 1000;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .5);
+  display: grid;
+  place-items: center;
+  z-index: 1000;
 }
-.dialog {
-	background: var(--color-surface);
-	color: var(--color-text);
-	border: 1px solid var(--color-border);
-	border-radius: var(--radius-lg);
-	box-shadow: var(--shadow-md);
-	width: min(92vw, 600px);
-	max-height: 85vh; overflow: auto;
-}
-.header { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-bottom: 1px solid var(--color-border); }
-.title { margin: 0; font-size: var(--text-xl); }
-.body { padding: 16px; }
 
+.dialog {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  inline-size: min(92vw, 600px);
+  max-block-size: 85vh;
+  overflow: auto;
+
+  &.fullScreen {
+    inline-size: 90vw;
+    max-block-size: 85vh;
+    max-inline-size: none;
+
+    .body {
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    img,
+    picture,
+    video {
+      max-inline-size: 100%;
+      max-block-size: 75vh;
+      object-fit: contain;
+    }
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.title {
+  margin: 0;
+  font-size: var(--text-xl);
+}
+
+.body {
+  padding: 16px;
+}
+
+@media (max-width: 768px) {
+  .dialog.fullScreen {
+    inline-size: 95vw;
+    max-block-size: 70vh;
+    border-radius: var(--radius-md);
+
+    .body {
+      padding: 8px;
+    }
+
+    img,
+    picture,
+    video {
+      max-block-size: 60vh;
+    }
+  }
+}
