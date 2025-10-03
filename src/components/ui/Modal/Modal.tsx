@@ -7,9 +7,10 @@ export interface ModalProps {
   onClose: () => void
   title?: string
   children?: React.ReactNode
+  fullScreen?: boolean
 }
 
-export default function Modal({ open, onClose, title, children }: ModalProps) {
+export default function Modal({ open, onClose, title, children, fullScreen }: ModalProps) {
   const dialogRef = useRef<HTMLDivElement>(null)
   const previouslyFocused = useRef<Element | null>(null)
 
@@ -36,7 +37,7 @@ export default function Modal({ open, onClose, title, children }: ModalProps) {
   return (
     <div className={cls.backdrop} role="presentation" onClick={onClose}>
       <div
-        className={cls.dialog}
+        className={[cls.dialog, fullScreen ? cls.fullScreen : ''].join(' ')}
         role="dialog"
         aria-modal="true"
         aria-labelledby={title ? 'modal-title' : undefined}
