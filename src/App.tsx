@@ -1,8 +1,8 @@
 import Button from './components/ui/Button/Button'
 import useTheme from './hooks/useTheme'
-import { useEffect, useState } from 'react'
-import ComponentsPage from './pages/ComponentsPage'
+import { lazy, Suspense, useEffect, useState } from 'react'
 import HomePage from './pages/HomePage'
+const ComponentsPage = lazy(() => import('./pages/ComponentsPage'))
 
 function App() {
   const { theme, toggle } = useTheme()
@@ -17,7 +17,11 @@ function App() {
   function renderPage() {
     switch (route) {
       case '#/components':
-        return <ComponentsPage />
+        return (
+          <Suspense fallback={<div className="container" style={{ padding: '40px 0', textAlign: 'center' }}>Bileşenler yükleniyor…</div>}>
+            <ComponentsPage />
+          </Suspense>
+        )
       default:
         return <HomePage />
     }

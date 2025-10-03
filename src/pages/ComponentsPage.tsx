@@ -2,8 +2,8 @@ import Button from '../components/ui/Button/Button'
 import Card from '../components/ui/Card/Card'
 import Accordion from '../components/ui/Accordion/Accordion'
 import Input from '../components/ui/Input/Input'
-import Modal from '../components/ui/Modal/Modal'
-import { useState } from 'react'
+import { lazy, Suspense, useState } from 'react'
+const Modal = lazy(() => import('../components/ui/Modal/Modal'))
 
 export default function ComponentsPage() {
   const [open, setOpen] = useState(false)
@@ -57,9 +57,13 @@ export default function ComponentsPage() {
       <section>
         <h2>Modal</h2>
         <Button onClick={() => setOpen(true)}>Modal Aç</Button>
-        <Modal open={open} onClose={() => setOpen(false)} title="Örnek Modal">
-          Bu modal, odak yönetimi ve ESC ile kapanma içerir.
-        </Modal>
+        {open ? (
+          <Suspense fallback={null}>
+            <Modal open={open} onClose={() => setOpen(false)} title="Örnek Modal">
+              Bu modal, odak yönetimi ve ESC ile kapanma içerir.
+            </Modal>
+          </Suspense>
+        ) : null}
       </section>
     </div>
   )
