@@ -2,7 +2,10 @@ import Button from '../components/ui/Button/Button'
 import Card from '../components/ui/Card/Card'
 import Accordion from '../components/ui/Accordion/Accordion'
 import Input from '../components/ui/Input/Input'
-import { useState } from 'react'
+import { lazy, Suspense, useState } from 'react'
+const Modal = lazy(() => import('../components/ui/Modal/Modal'))
+import desktopReport from '../assets/img/case-app-desktop.png'
+import mobileReport from '../assets/img/case-app-mobile.png'
 
 export default function HomePage() {
   const [email, setEmail] = useState('')
@@ -10,6 +13,8 @@ export default function HomePage() {
   const [message, setMessage] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [errors, setErrors] = useState<{ email?: string; name?: string; message?: string }>({})
+  const [showDesktopReport, setShowDesktopReport] = useState(false)
+  const [showMobileReport, setShowMobileReport] = useState(false)
 
   function validate() {
     const errs: typeof errors = {}
@@ -50,6 +55,20 @@ export default function HomePage() {
             <Card title="Responsive" subtitle="3 breakpoint ile cihaz uyumu" />
             <Card title="A11y" subtitle="Klavyeyle gezinme ve ARIA" />
             <Card title="Performans" subtitle="Lighthouse 90+ hedefi" />
+          </div>
+        </div>
+      </section>
+
+      {/* Lighthouse Reports */}
+      <section id="lighthouse" className="section">
+        <div className="container" style={{ display: 'grid', gap: 16 }}>
+          <h2 style={{ margin: 0 }}>Lighthouse Skorları</h2>
+          <p style={{ margin: 0, color: 'var(--color-muted)' }}>
+            Masaüstü ve mobil ölçümlerde 90+ hedefini sağlamak için optimizasyonlar uygulandı. Raporları incelemek için aşağıdaki bağlantıları kullanın.
+          </p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
+            <Button onClick={() => setShowDesktopReport(true)}>Masaüstü Raporu</Button>
+            <Button variant="secondary" onClick={() => setShowMobileReport(true)}>Mobil Raporu</Button>
           </div>
         </div>
       </section>
@@ -138,6 +157,42 @@ export default function HomePage() {
           <a href="#hero">Yukarı çık</a>
         </div>
       </footer>
+
+      {showDesktopReport ? (
+        <Suspense fallback={<div className="container" style={{ padding: '24px 0', textAlign: 'center' }}>Rapor yükleniyor…</div>}>
+          <Modal open onClose={() => setShowDesktopReport(false)} title="Lighthouse – Masaüstü" fullScreen>
+            <figure style={{ margin: 0, display: 'flex', flexDirection: 'column', height: '100%' }}>
+              <img
+                src={desktopReport}
+                alt="Lighthouse masaüstü performans raporu ekran görüntüsü"
+                loading="lazy"
+                style={{ maxWidth: '100%', maxHeight: 'calc(100% - 40px)', objectFit: 'contain' }}
+              />
+              <figcaption style={{ marginTop: 8, color: 'var(--color-muted)', fontSize: 'var(--text-sm)', textAlign: 'center' }}>
+                Masaüstü ölçüm sonuçları; performans, erişilebilirlik ve en iyi uygulamalar 90+.
+              </figcaption>
+            </figure>
+          </Modal>
+        </Suspense>
+      ) : null}
+
+      {showMobileReport ? (
+        <Suspense fallback={<div className="container" style={{ padding: '24px 0', textAlign: 'center' }}>Rapor yükleniyor…</div>}>
+          <Modal open onClose={() => setShowMobileReport(false)} title="Lighthouse – Mobil" fullScreen>
+            <figure style={{ margin: 0, display: 'flex', flexDirection: 'column', height: '100%' }}>
+              <img
+                src={mobileReport}
+                alt="Lighthouse mobil performans raporu ekran görüntüsü"
+                loading="lazy"
+                style={{ maxWidth: '100%', maxHeight: 'calc(100% - 60px)', objectFit: 'contain' }}
+              />
+              <figcaption style={{ marginTop: 8, color: 'var(--color-muted)', fontSize: 'var(--text-sm)', textAlign: 'center' }}>
+                Mobil ölçüm sonuçları; performans, erişilebilirlik ve en iyi uygulamalar 90+.
+              </figcaption>
+            </figure>
+          </Modal>
+        </Suspense>
+      ) : null}
     </div>
   )
 }
