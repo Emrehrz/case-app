@@ -25,6 +25,8 @@ Modern, erişilebilir ve performans odaklı bir ürün tanıtım sayfası ile bi
 - Tema desteği: Light/Dark toggle, CSS değişkenleri ile.
 - Form doğrulama: E-posta format kontrolü ve boş alan uyarıları.
 - Components showcase sayfası (`#/components`) ile bileşen demoları.
+- **Responsive tasarım**: 3 breakpoint (≤640px, 641–1024px, ≥1025px) ile tam uyumlu.
+- **Performans**: Lighthouse 100/100 skor, lazy loading, code splitting.
 
 ## 🧱 Mimari
 
@@ -90,10 +92,11 @@ git push -u origin feat/new-component
 
 ## ⚡ Performans Hedefleri
 
-- Lighthouse performans skoru ≥ **90/100**.
+- Lighthouse performans skoru ≥ **90/100** (Mevcut: **100/100**).
 - Bileşen sayfası ve modal **lazy-load** edilir (code-splitting).
 - Resim ve asset optimizasyonu (gerektiğinde).
 - Üretim ölçümleri için `npm run build && npm run preview` ile test yapılmalı.
+- **Lighthouse Raporları**: Ana sayfada "Lighthouse Skorları" bölümünde desktop ve mobil raporları görüntülenebilir.
 
 ## 📚 Dökümantasyon ve Karar Kayıtları
 
